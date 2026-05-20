@@ -9,23 +9,26 @@ const AppHeader = () => {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 z-40" onClick={toggleUserMenu} />
+        <div
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm transition-all duration-300"
+          onClick={toggleUserMenu}
+        />
       )}
-      <nav className="fixed top-0 z-50 w-full bg-[#1a4a1a] border-b border-[#2d6a2d]">
-        <div className="px-3 py-3 lg:px-5 lg:pl-3">
+      <nav className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-lg border-b border-emerald-200">
+        <div className="px-4 py-3 lg:px-6 lg:pl-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center justify-start rtl:justify-end">
+            <div className="flex items-center justify-start rtl:justify-end gap-3">
               <button
                 data-drawer-target="top-bar-sidebar"
                 data-drawer-toggle="top-bar-sidebar"
                 aria-controls="top-bar-sidebar"
                 type="button"
                 onClick={toggleSidebar}
-                className="sm:hidden text-[#c8e6c9] bg-transparent box-border border border-transparent hover:bg-[#2d6a2d] focus:ring-4 focus:ring-[#4caf50] font-medium leading-5 rounded-lg text-sm p-2 focus:outline-none"
+                className="sm:hidden text-emerald-700 bg-white rounded-lg shadow-md border border-emerald-200 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium leading-5 text-sm p-2.5 transition-all duration-200 focus:outline-none"
               >
                 <span className="sr-only">Open sidebar</span>
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -35,15 +38,32 @@ const AppHeader = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeWidth="2"
                     d="M5 7h14M5 12h14M5 17h10"
                   />
                 </svg>
               </button>
-              <span className="self-center text-lg font-semibold whitespace-nowrap text-[#c8e6c9]">
-                FCU - PLASTIC RECYCLING VENDING MACHINE
-              </span>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                </div>
+                <span className="self-center text-base font-bold tracking-wide text-emerald-800 md:text-lg">
+                  ♻️ FCU - PLASTIC RECYCLING VENDING MACHINE
+                </span>
+              </div>
             </div>
             <div className="flex items-center">
               <div className="flex items-center ms-3">
@@ -51,46 +71,62 @@ const AppHeader = () => {
                   <button
                     type="button"
                     onClick={toggleUserMenu}
-                    className="flex text-sm bg-[#2d6a2d] rounded-full focus:ring-4 focus:ring-[#4caf50]"
+                    className="flex text-sm bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full ring-2 ring-emerald-200 hover:ring-emerald-400 focus:ring-4 focus:ring-emerald-300 transition-all duration-200 shadow-md hover:shadow-lg"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-user"
                   >
                     <span className="sr-only">Open user menu</span>
                     <img
-                      className="w-8 h-8 rounded-full"
+                      className="w-9 h-9 rounded-full border-2 border-white"
                       src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                       alt="user photo"
                     />
                   </button>
                 </div>
                 <div
-                  className={`absolute right-8 top-9 min-w-[200px] z-50 ${isOpen ? "block" : "hidden"} bg-[#1a4a1a] border border-[#2d6a2d] rounded-lg shadow-lg w-44"
-                  id="dropdown-user`}
+                  className={`absolute right-6 top-12 min-w-[220px] z-50 ${isOpen ? "block animate-fadeIn" : "hidden"} bg-white rounded-xl shadow-2xl border border-emerald-100 overflow-hidden`}
+                  id="dropdown-user"
                 >
                   <div
-                    className="px-4 py-3 border-b border-[#2d6a2d]"
+                    className="px-5 py-4 bg-gradient-to-r from-emerald-50 to-emerald-100 border-b border-emerald-200"
                     role="none"
                   >
                     <p
-                      className="text-sm font-medium text-[#c8e6c9]"
+                      className="text-sm font-semibold text-emerald-800"
                       role="none"
                     >
                       Neil Sims
                     </p>
-                    <p className="text-sm text-[#81c784] truncate" role="none">
+                    <p
+                      className="text-xs text-emerald-600 truncate mt-0.5"
+                      role="none"
+                    >
                       neil.sims@flowbite.com
                     </p>
                   </div>
                   <ul
-                    className="p-2 text-sm text-[#a5d6a7] font-medium"
+                    className="py-2 text-sm text-gray-700 font-medium"
                     role="none"
                   >
                     <li>
                       <Link
                         to="#"
-                        className="inline-flex items-center w-full p-2 hover:bg-[#2d6a2d] hover:text-[#c8e6c9] rounded"
+                        className="flex items-center gap-2 w-full px-5 py-2.5 hover:bg-emerald-50 hover:text-emerald-700 transition-colors duration-150"
                         role="menuitem"
                       >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                          />
+                        </svg>
                         Sign out
                       </Link>
                     </li>
