@@ -13,7 +13,7 @@ const LayoutContent = () => {
       <div>
         <AppHeader />
       </div>
-      <div className="pt-20 pl-0 sm:pl-64 bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-700 min-h-screen transition-all duration-300">
+      <div className="pt-20 pl-0 sm:pl-64 bg-linear-to-br from-emerald-700 via-emerald-600 to-teal-700 min-h-screen transition-all duration-300">
         <div className="p-6 md:p-8">
           <Outlet />
         </div>

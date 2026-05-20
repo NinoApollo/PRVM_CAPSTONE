@@ -62,7 +62,7 @@ const AppSidebar = () => {
         <div className="h-full px-4 py-6 overflow-y-auto bg-white/95 backdrop-blur-md border-r border-emerald-100">
           <div className="mb-8 px-3">
             <div className="flex items-center gap-2 mb-6 pb-4 border-b border-emerald-100">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 bg-linear-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center shadow-md">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -95,7 +95,7 @@ const AppSidebar = () => {
                   onClick={() => window.innerWidth < 640 && toggleSidebar()}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 group ${
                     location.pathname === sidebarItem.path
-                      ? "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-md"
+                      ? "bg-linear-to-r from-emerald-500 to-emerald-600 text-white shadow-md"
                       : "text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
                   }`}
                 >
@@ -114,21 +114,6 @@ const AppSidebar = () => {
               </li>
             ))}
           </ul>
-          <div className="absolute bottom-6 left-4 right-4">
-            <div className="p-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border border-emerald-100">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
-                  <span className="text-sm">♻️</span>
-                </div>
-                <div>
-                  <p className="text-xs text-emerald-600 font-medium">
-                    Total Recycled
-                  </p>
-                  <p className="text-sm font-bold text-emerald-800">1,284 kg</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </aside>
     </>

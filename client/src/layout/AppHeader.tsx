@@ -71,7 +71,7 @@ const AppHeader = () => {
                   <button
                     type="button"
                     onClick={toggleUserMenu}
-                    className="flex text-sm bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full ring-2 ring-emerald-200 hover:ring-emerald-400 focus:ring-4 focus:ring-emerald-300 transition-all duration-200 shadow-md hover:shadow-lg"
+                    className="flex text-sm bg-linear-to-r from-emerald-600 to-emerald-700 rounded-full ring-2 ring-emerald-200 hover:ring-emerald-400 focus:ring-4 focus:ring-emerald-300 transition-all duration-200 shadow-md hover:shadow-lg"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-user"
                   >
@@ -84,11 +84,11 @@ const AppHeader = () => {
                   </button>
                 </div>
                 <div
-                  className={`absolute right-6 top-12 min-w-[220px] z-50 ${isOpen ? "block animate-fadeIn" : "hidden"} bg-white rounded-xl shadow-2xl border border-emerald-100 overflow-hidden`}
+                  className={`absolute right-6 top-12 min-w-55 z-50 ${isOpen ? "block animate-fadeIn" : "hidden"} bg-white rounded-xl shadow-2xl border border-emerald-100 overflow-hidden`}
                   id="dropdown-user"
                 >
                   <div
-                    className="px-5 py-4 bg-gradient-to-r from-emerald-50 to-emerald-100 border-b border-emerald-200"
+                    className="px-5 py-4 bg-linear-to-r from-emerald-50 to-emerald-100 border-b border-emerald-200"
                     role="none"
                   >
                     <p
