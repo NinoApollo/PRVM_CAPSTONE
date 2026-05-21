@@ -56,7 +56,7 @@ const FloatingLabelSelect: FC<FloatingLabelSelectProps> = ({
           appearance-none cursor-pointer
           peer
           ${borderColor}
-          ${disabled && "bg-gray-100 opacity-60 cursor-not-allowed"}
+          ${disabled && "bg-emerald-50 opacity-60 cursor-not-allowed"}
           ${newSelectClassName || selectClassName || ""}
         `}
       >

@@ -105,7 +105,7 @@ const AppHeader = () => {
                     </p>
                   </div>
                   <ul
-                    className="py-2 text-sm text-gray-700 font-medium"
+                    className="py-2 text-sm text-emerald-700 font-medium"
                     role="none"
                   >
                     <li>

@@ -13,7 +13,7 @@ const DeleteRoleForm = () => {
           <BackButton label="Back" path="/" />
           <SubmitButton
             label="Delete Role"
-            className="bg-red-600 hover:bg-red-700"
+            className="bg-rose-600 hover:bg-rose-700"
           />
         </div>
       </form>

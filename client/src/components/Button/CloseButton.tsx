@@ -1,29 +1,29 @@
 import type { FC } from "react";
-import { Link } from "react-router-dom";
 
-interface BackButtonProps {
+interface CloseButtonProps {
   label: string;
-  path: string;
+  onClose: () => void;
   newClassName?: string;
   className?: string;
 }
 
-const BackButton: FC<BackButtonProps> = ({
+const CloseButton: FC<CloseButtonProps> = ({
   label,
-  path,
+  onClose,
   newClassName,
   className,
 }) => {
   return (
     <>
-      <Link
-        to={path}
+      <button
+        type="button"
         className={`${newClassName ? newClassName : `px-4 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 hover:text-emerald-700 text-sm font-medium cursor-pointer rounded-lg shadow-lg ${className}`}`}
+        onClick={onClose}
       >
         {label}
-      </Link>
+      </button>
     </>
   );
 };
 
-export default BackButton;
+export default CloseButton;

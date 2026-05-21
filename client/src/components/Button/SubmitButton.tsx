@@ -15,7 +15,7 @@ const SubmitButton: FC<SubmitButtonProps> = ({
     <>
       <button
         type="submit"
-        className={`${newClassName ? newClassName : `px-4 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-medium cursor-pointer rounded-lg shadow-lg ${className}`}`}
+        className={`${newClassName ? newClassName : `px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium cursor-pointer rounded-lg shadow-lg ${className}`}`}
       >
         {label}
       </button>

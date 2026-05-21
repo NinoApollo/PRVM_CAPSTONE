@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import AddRoleForm from "./components/AddRoleForm";
 import RoleList from "./components/RoleList";
 
-const MainPage = () => {
+const RoleMainPage = () => {
   useEffect(() => {
     document.title = "Role Main Page";
   }, []);
@@ -21,4 +21,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default RoleMainPage;
