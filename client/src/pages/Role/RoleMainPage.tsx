@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AddRoleForm from "./components/AddRoleForm";
 import RoleList from "./components/RoleList";
 import ToastMessage from "../../components/ToastMessage/ToastMessage";
+import { useToastMessage } from "../../hooks/useToastMessage";
+import { useRefresh } from "../../hooks/useRefresh";
 
 const RoleMainPage = () => {
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastMessageIsVisible, setToastMessageIsVisible] = useState(false);
+  const {
+    message: toastMessage,
+    isVisible: toastMessageIsVisible,
+    showToastMessage,
+    closeToastMessage,
+  } = useToastMessage("", false);
 
-  const handleShowToastMessage = (message: string) => {
-    setToastMessage(message);
-    setToastMessageIsVisible(true);
-  };
-
-  const handleCloseToastMessage = () => {
-    setToastMessage("");
-    setToastMessageIsVisible(false);
-  };
+  const { refresh, handleRefresh } = useRefresh(false);
 
   useEffect(() => {
     document.title = "Role Main Page";
@@ -26,18 +24,17 @@ const RoleMainPage = () => {
       <ToastMessage
         message={toastMessage}
         isVisible={toastMessageIsVisible}
-        onClose={handleCloseToastMessage}
+        onClose={closeToastMessage}
       />
       <div className="grid grid-cols-2 gap-4">
         <div className="col-span-2 md:col-span-1">
           <AddRoleForm
-            onRoleAdded={(message) => {
-              handleShowToastMessage(message);
-            }}
+            onRoleAdded={showToastMessage}
+            refreshKey={handleRefresh}
           />
         </div>
         <div className="col-span-2 md:col-span-1">
-          <RoleList />
+          <RoleList refreshKey={refresh} />
         </div>
       </div>
     </>

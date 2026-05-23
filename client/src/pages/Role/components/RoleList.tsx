@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState, type FC } from "react";
 import {
   Table,
   TableBody,
@@ -6,88 +6,45 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/Table";
+import type { RoleColumns } from "../../../interfaces/RoleColumns";
+import RoleService from "../../../services/RoleService";
+import Spinner from "../../../components/Spinner/Spinner";
 
-const RoleList = () => {
-  const roles = [
-    {
-      role_id: 1,
-      role: "Admin",
-      action: (
-        <>
-          <div className="flex gap-4">
-            <div>
-              <Link
-                to="/roles/edit"
-                className="text-emerald-600 hover:underline hover:text-emerald-700 font-medium transition-colors"
-              >
-                Edit
-              </Link>
-            </div>
-            <div>
-              <Link
-                to="/roles/delete"
-                className="text-rose-600 hover:underline hover:text-rose-700 font-medium transition-colors"
-              >
-                Delete
-              </Link>
-            </div>
-          </div>
-        </>
-      ),
-    },
-    {
-      role_id: 2,
-      role: "Faculty",
-      action: (
-        <>
-          <div className="flex gap-4">
-            <div>
-              <Link
-                to="/roles/edit"
-                className="text-emerald-600 hover:underline hover:text-emerald-700 font-medium transition-colors"
-              >
-                Edit
-              </Link>
-            </div>
-            <div>
-              <Link
-                to="/roles/delete"
-                className="text-rose-600 hover:underline hover:text-rose-700 font-medium transition-colors"
-              >
-                Delete
-              </Link>
-            </div>
-          </div>
-        </>
-      ),
-    },
-    {
-      role_id: 3,
-      role: "Student",
-      action: (
-        <>
-          <div className="flex gap-4">
-            <div>
-              <Link
-                to="/roles/edit"
-                className="text-emerald-600 hover:underline hover:text-emerald-700 font-medium transition-colors"
-              >
-                Edit
-              </Link>
-            </div>
-            <div>
-              <Link
-                to="/roles/delete"
-                className="text-rose-600 hover:underline hover:text-rose-700 font-medium transition-colors"
-              >
-                Delete
-              </Link>
-            </div>
-          </div>
-        </>
-      ),
-    },
-  ];
+interface RoleListProps {
+  refreshKey: boolean;
+}
+
+const RoleList: FC<RoleListProps> = ({ refreshKey }) => {
+  const [loadingRoles, setLoadingRoles] = useState(false);
+  const [roles, setRoles] = useState<RoleColumns[]>([]);
+
+  const handleLoadRoles = async () => {
+    try {
+      setLoadingRoles(true);
+
+      const res = await RoleService.loadRoles();
+
+      if (res.status === 200) {
+        setRoles(res.data.roles);
+      } else {
+        console.error(
+          "Unexpected status error occured during loading roles: ",
+          res.status,
+        );
+      }
+    } catch (errors) {
+      console.error(
+        "Unexpected server error occured during loading roles: ",
+        errors,
+      );
+    } finally {
+      setLoadingRoles(false);
+    }
+  };
+
+  useEffect(() => {
+    handleLoadRoles();
+  }, [refreshKey]);
 
   return (
     <>
@@ -104,7 +61,7 @@ const RoleList = () => {
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-4 py-3 font-medium text-center"
+                  className="px-4 py-3 font-medium text-start"
                 >
                   Role
                 </TableCell>
@@ -117,19 +74,24 @@ const RoleList = () => {
               </TableRow>
             </TableHeader>
             <TableBody className="divide-y divide-emerald-50 text-emerald-700 text-sm">
-              {roles.map((role, index) => (
-                <TableRow className="hover:bg-emerald-50" key={index}>
-                  <TableCell className="px-4 py-3 text-center">
-                    {role.role_id}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-start">
-                    {role.role}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-start">
-                    {role.action}
+              {loadingRoles ? (
+                <TableRow>
+                  <TableCell colSpan={3} className="px-4 py-3 text-center">
+                    <Spinner size="md" />
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                roles.map((role, index) => (
+                  <TableRow className="hover:bg-gray-100" key={index}>
+                    <TableCell className="px-4 py-3 text-center">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-start">
+                      {role.role}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </div>

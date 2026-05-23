@@ -6,9 +6,10 @@ import type { RoleFieldErrors } from "../../../interfaces/RoleFieldErrors";
 
 interface AddRoleFormProps {
   onRoleAdded: (message: string) => void;
+  refreshKey: () => void;
 }
 
-const AddRoleForm: FC<AddRoleFormProps> = ({ onRoleAdded }) => {
+const AddRoleForm: FC<AddRoleFormProps> = ({ onRoleAdded, refreshKey }) => {
   const [loadingStore, setLoadingStore] = useState(false);
   const [role, setRole] = useState("");
   const [errors, setErrors] = useState<RoleFieldErrors>({});
@@ -25,6 +26,7 @@ const AddRoleForm: FC<AddRoleFormProps> = ({ onRoleAdded }) => {
         setRole("");
         setErrors({});
         onRoleAdded(res.data.message);
+        refreshKey();
       } else {
         console.error("Unexpected error occured during store role: ", res.data);
       }

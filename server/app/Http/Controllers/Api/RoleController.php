@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    public function loadRoles() {
+        $roles = Role::where('tbl_roles.is_deleted', false)
+            ->get();
+
+        return response()->json([
+            'roles' => $roles
+        ], 200);
+    }
+
     public function storeRole(Request $request) {
         $validated = $request->validate([
             'role' => ['required', 'min:3', 'max:30']
