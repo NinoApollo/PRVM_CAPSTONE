@@ -46,7 +46,10 @@ const AddRoleForm: FC<AddRoleFormProps> = ({ onRoleAdded, refreshKey }) => {
 
   return (
     <>
-      <form onSubmit={handleStoreRole}>
+      <form
+        onSubmit={handleStoreRole}
+        className="rounded-3xl border border-emerald-200/60 bg-white/95 p-6 shadow-xl shadow-emerald-500/10"
+      >
         <div className="mb-4">
           <FloatingLabelInput
             label="Role"
@@ -59,7 +62,7 @@ const AddRoleForm: FC<AddRoleFormProps> = ({ onRoleAdded, refreshKey }) => {
             errors={errors.role}
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-end pt-3 border-t border-emerald-100">
           <SubmitButton
             label="Save Role"
             loading={loadingStore}

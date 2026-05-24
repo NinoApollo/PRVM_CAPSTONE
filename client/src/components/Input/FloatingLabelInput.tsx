@@ -53,14 +53,12 @@ const FloatingLabelInput: FC<FloatingLabelInputProps> = ({
           className={`${newLabelClassName ? newLabelClassName : `absolute text-sm text-emerald-700 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 rounded-lg peer-focus:px-2 peer-focus:text-emerald-900 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto inset-s-1 ${labelClassName}`}`}
         >
           {label}
-          {required && <span className="text-rose-300 ml-1 text-sm">*</span>}
+          {required && <span className="text-emerald-600 ml-1 text-sm">*</span>}
         </label>
-        {errors && errors.length > 0 && (
-          <span className="text-rose-300 text-xs mt-1 block animate-pulse">
-            {errors[0]}
-          </span>
-        )}
       </div>
+      {errors && errors.length > 0 && (
+        <span className="text-rose-600 text-xs mt-1 block">{errors[0]}</span>
+      )}
     </>
   );
 };

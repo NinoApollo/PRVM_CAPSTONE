@@ -33,11 +33,16 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ isOpen, onClose }) => {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} showCloseButton>
-        <form>
-          <h1 className="text-2xl border-b border-emerald-100 p-4 font-semibold mb-4 text-emerald-900">
-            Add User Form
-          </h1>
-          <div className="grid grid-cols-2 gap-4 border-b border-emerald-100 mb-4">
+        <form className="space-y-6">
+          <div className="border-b border-emerald-100 pb-4">
+            <h1 className="text-2xl font-semibold text-emerald-900">
+              Add User
+            </h1>
+            <p className="mt-2 text-sm text-emerald-500">
+              Enter the new user information to add a user account.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 border-b border-emerald-100 pb-4">
             <div className="col-span-2 md:col-span-1">
               <div className="mb-4">
                 <FloatingLabelInput
@@ -86,7 +91,6 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ isOpen, onClose }) => {
                   label="Birth Date"
                   type="date"
                   name="birth_date"
-                  inputClassName="text-white"
                   required
                 />
               </div>
@@ -115,7 +119,7 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-end gap-2 border-t border-emerald-100 pt-4">
             <CloseButton label="Close" onClose={onClose} />
             <SubmitButton label="Save User" />
           </div>

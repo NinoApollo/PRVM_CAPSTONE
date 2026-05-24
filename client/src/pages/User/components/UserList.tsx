@@ -70,15 +70,20 @@ const UserList: FC<UserListProps> = ({ onAddUser }) => {
   ];
   return (
     <>
-      <div className="overflow-hidden rounded-lg border border-emerald-100 bg-white">
-        <div className="max-w-full max-h-[calc(100vh)] overflow-auto">
+      <div className="overflow-hidden rounded-3xl border border-emerald-200/60 bg-white/95 shadow-xl shadow-emerald-500/10">
+        <div className="max-w-full max-h-[calc(100vh-20rem)] overflow-auto">
           <Table>
             <caption className="mb-4">
-              <div className="border-b border-emerald-100">
-                <div className="p-4 flex justify-end">
+              <div className="border-b border-emerald-100 bg-emerald-50">
+                <div className="p-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 className="mt-2 text-lg font-semibold text-emerald-900">
+                      User Management
+                    </h2>
+                  </div>
                   <button
                     type="button"
-                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg shadow-lg transition cursor-pointer"
+                    className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white shadow-lg transition hover:bg-emerald-700"
                     onClick={onAddUser}
                   >
                     Add User
@@ -141,7 +146,7 @@ const UserList: FC<UserListProps> = ({ onAddUser }) => {
             <TableBody className="divide-y divide-emerald-50 text-emerald-700 text-sm">
               {users.map((user, index) => (
                 <TableRow className="hover:bg-emerald-50" key={index}>
-                  <TableCell className="px-4 py-3 text-center">
+                  <TableCell className="px-4 py-3 text-center text-emerald-700">
                     {user.user_id}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-start">
