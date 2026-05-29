@@ -14,7 +14,7 @@ const RoleMainPage = () => {
     isVisible: toastMessageIsVisible,
     showToastMessage,
     closeToastMessage,
-  } = useToastMessage("", false);
+  } = useToastMessage("", false, false);
 
   const { refresh, handleRefresh } = useRefresh(false);
 

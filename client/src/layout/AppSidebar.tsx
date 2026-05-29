@@ -9,7 +9,7 @@ const AppSidebar = () => {
 
   const sidebarItems = [
     {
-      path: "/",
+      path: "/dashboard",
       text: "Dashboard",
       icon: (
         <svg
@@ -50,7 +50,7 @@ const AppSidebar = () => {
       ),
     },
     {
-      path: "/role",
+      path: "/roles",
       text: "Roles",
       icon: (
         <svg

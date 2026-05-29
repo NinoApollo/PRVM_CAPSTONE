@@ -49,7 +49,7 @@ const DeleteRoleForm = () => {
       const res = await RoleService.destroyRole(role_id!);
 
       if (res.status === 200) {
-        navigate("/role", { state: { message: res.data.message } });
+        navigate("/roles", { state: { message: res.data.message } });
       } else {
         console.error(
           "Unexpected status error occured during deleting role: ",
@@ -99,7 +99,7 @@ const DeleteRoleForm = () => {
             />
           </div>
           <div className="flex justify-end gap-4 pt-3 border-t border-emerald-100">
-            {!loadingDestroy && <BackButton label="Back" path="/role" />}
+            {!loadingDestroy && <BackButton label="Back" path="/roles" />}
             <SubmitButton
               label="Delete Role"
               className="bg-red-600 hover:bg-red-700"

@@ -11,9 +11,9 @@ import type { UserFieldErrors } from "../../../interfaces/UserInterface";
 
 interface AddUserFormModalProps {
   onUserAdded: (message: string) => void;
-  refreshKey: () => void;
   isOpen: boolean;
   onClose: () => void;
+  refreshKey: () => void;
 }
 
 const AddUserFormModal: FC<AddUserFormModalProps> = ({
@@ -58,8 +58,6 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({
       const res = await UserService.storeUser(payload);
 
       if (res.status === 200) {
-        onUserAdded(res.data.message);
-
         setFirstName("");
         setMiddleName("");
         setLastName("");
@@ -71,6 +69,8 @@ const AddUserFormModal: FC<AddUserFormModalProps> = ({
         setPasswordConfirmation("");
         setErrors({});
 
+        onUserAdded(res.data.message);
+        refreshKey();
         handleLoadRoles();
       } else {
         console.error(

@@ -5,7 +5,7 @@ import FloatingLabelInput from "../../../components/Input/FloatingLabelInput";
 import RoleService from "../../../services/RoleService";
 import { useParams } from "react-router-dom";
 import Spinner from "../../../components/Spinner/Spinner";
-import type { RoleFieldErrors } from "../../../interfaces/RoleFieldErrors";
+import type { RoleFieldErrors } from "../../../interfaces/RoleInterface";
 
 interface EditRoleFormProps {
   onRoleUpdated: (message: string) => void;
@@ -113,7 +113,7 @@ const EditRoleForm: FC<EditRoleFormProps> = ({ onRoleUpdated }) => {
             />
           </div>
           <div className="flex justify-end gap-4 pt-3 border-t border-emerald-100">
-            {!loadingUpdate && <BackButton label="Back" path="/role" />}
+            {!loadingUpdate && <BackButton label="Back" path="/roles" />}
             <SubmitButton
               label="Update Role"
               loading={loadingUpdate}

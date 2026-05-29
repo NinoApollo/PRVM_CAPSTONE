@@ -4,21 +4,32 @@ import UserMainPage from "../pages/User/UserMainPage";
 import RoleMainPage from "../pages/Role/RoleMainPage";
 import EditRolePage from "../pages/Role/EditRolePage";
 import DeleteRolePage from "../pages/Role/DeleteRolePage";
+import DashboardMainPage from "../pages/Dashboard/DashboardMainPage";
+import LoginPage from "../pages/Auth/LoginPage";
+import { AuthProvider } from "../context/AuthContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes = () => {
   return (
     <>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<RoleMainPage />} />
-          <Route path="/gender/edit/:gender_id" element={<EditRolePage />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
           <Route
-            path="/gender/delete/:gender_id"
-            element={<DeleteRolePage />}
-          />
-          <Route path="/users" element={<UserMainPage />} />
-        </Route>
-      </Routes>
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/dashboard" element={<DashboardMainPage />} />
+            <Route path="/roles" element={<RoleMainPage />} />
+            <Route path="/role/edit/:role_id" element={<EditRolePage />} />
+            <Route path="/role/delete/:role_id" element={<DeleteRolePage />} />
+            <Route path="/users" element={<UserMainPage />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </>
   );
 };

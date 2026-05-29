@@ -9,7 +9,7 @@ import {
 import RoleService from "../../../services/RoleService";
 import Spinner from "../../../components/Spinner/Spinner";
 import { Link } from "react-router-dom";
-import type { RoleColumns } from "../../../interfaces/RoleColumns";
+import type { RoleColumns } from "../../../interfaces/RoleInterface";
 
 interface RoleListProps {
   refreshKey: boolean;

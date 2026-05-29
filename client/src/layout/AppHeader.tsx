@@ -1,10 +1,56 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useHeader } from "../context/HeaderContext";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
+import { useEffect, useState, type FormEvent } from "react";
 
 const AppHeader = () => {
   const { isOpen, toggleUserMenu } = useHeader();
   const { toggleSidebar } = useSidebar();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogout = async (e: FormEvent) => {
+    try {
+      e.preventDefault();
+
+      setIsLoading(true);
+
+      await logout();
+      navigate("/");
+    } catch (error) {
+      console.error(
+        "Unexpected server error occured during logging user out: ",
+        error,
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleUserFullNameFormat = () => {
+    if (!user) return "";
+
+    let fullName = `${user.user.last_name}, ${user.user.first_name}`;
+
+    if (user.user.middle_name) {
+      fullName += ` ${user.user.middle_name.charAt(0)}.`;
+    }
+
+    if (user.user.suffix_name) {
+      fullName += ` ${user.user.suffix_name}`;
+    }
+
+    return fullName;
+  };
+
+  useEffect(() => {
+    if (user) {
+      handleUserFullNameFormat();
+    }
+  }, [user]);
 
   return (
     <>
@@ -83,13 +129,7 @@ const AppHeader = () => {
                       className="text-sm font-semibold text-emerald-800"
                       role="none"
                     >
-                      Neil Sims
-                    </p>
-                    <p
-                      className="text-xs text-emerald-600 truncate mt-0.5"
-                      role="none"
-                    >
-                      neil.sims@flowbite.com
+                      {handleUserFullNameFormat()}
                     </p>
                   </div>
                   <ul
@@ -97,10 +137,12 @@ const AppHeader = () => {
                     role="none"
                   >
                     <li>
-                      <Link
-                        to="#"
-                        className="flex items-center gap-2 w-full px-5 py-2.5 hover:bg-emerald-50 hover:text-emerald-700 transition-colors duration-150"
+                      <button
+                        type="submit"
+                        className="flex items-center gap-2 w-full text-start px-5 py-2.5 hover:bg-emerald-50 hover:text-emerald-700 transition-colors duration-150 cursor-pointer disabled:cursor-not-allowed"
                         role="menuitem"
+                        onClick={handleLogout}
+                        disabled={isLoading}
                       >
                         <svg
                           className="w-4 h-4"
@@ -115,8 +157,8 @@ const AppHeader = () => {
                             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                           />
                         </svg>
-                        Sign out
-                      </Link>
+                        {isLoading ? "Signing Out..." : "Sign Out"}
+                      </button>
                     </li>
                   </ul>
                 </div>
