@@ -25,7 +25,7 @@ const LoginForm: FC<LoginFormProps> = ({ message }) => {
       setIsLoading(true);
 
       await login(username, password);
-      navigate("/roles");
+      navigate("/dashboard");
     } catch (error: any) {
       if (error.response && error.response.status === 401) {
         setErrors({});
